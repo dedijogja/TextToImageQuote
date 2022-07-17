@@ -1,0 +1,60 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "info.isakuiki.katadpikhlasdansabar"
+        minSdkVersion 14
+        targetSdkVersion 18
+        versionCode 5
+        versionName "1.5"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
+    }
+    signingConfigs {
+        release {
+            storeFile file("E:\\APK Jadi\\Android Studio\\ISAKUIKI CORP\\keystore\\keystore.jks")
+            storePassword "#\$ugywdyvft215"
+            keyAlias "ISAKUIKI CORP"
+            keyPassword "#\$ugywdyvft215"
+            v2SigningEnabled true
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //core lib
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+
+    //library loading animation
+    implementation 'com.wang.avi:library:2.1.3'
+
+    //startapp
+    implementation 'com.startapp:inapp-sdk:3.6.9'
+
+    //admob
+    implementation 'com.google.android.gms:play-services-ads:11.8.0'
+
+    //pilih warna
+    implementation 'com.github.QuadFlask:colorpicker:0.0.13'
+}
